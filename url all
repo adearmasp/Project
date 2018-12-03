@@ -1,0 +1,27 @@
+string url = HttpContext.Current.Request.Url.AbsoluteUri;
+// http://localhost:1302/TESTERS/Default6.aspx
+
+string path = HttpContext.Current.Request.Url.AbsolutePath;
+// /TESTERS/Default6.aspx
+
+string host = HttpContext.Current.Request.Url.Host;
+// localhost
+
+
+
+Response.Write("<br/> " + HttpContext.Current.Request.Url.Host);
+Response.Write("<br/> " + HttpContext.Current.Request.Url.Authority);
+Response.Write("<br/> " + HttpContext.Current.Request.Url.Port);
+Response.Write("<br/> " + HttpContext.Current.Request.Url.AbsolutePath);
+Response.Write("<br/> " + HttpContext.Current.Request.ApplicationPath);
+Response.Write("<br/> " + HttpContext.Current.Request.Url.AbsoluteUri);
+Response.Write("<br/> " + HttpContext.Current.Request.Url.PathAndQuery);
+
+
+localhost
+localhost:60527
+60527
+/WebSite1test/Default2.aspx
+/WebSite1test
+http://localhost:60527/WebSite1test/Default2.aspx?QueryString1=1&QueryString1=2
+/WebSite1test/Default2.aspx?QueryString1=1&QueryString2=2
