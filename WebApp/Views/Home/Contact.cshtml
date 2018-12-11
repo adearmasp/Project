@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a asp-area="" asp-controller="Customer" asp-action="List" class="navbar-brand">Home</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            @if (User.IsInRole("AdminRole") || User.IsInRole("UserRole"))
+            {
+                <li><a asp-area="" asp-controller="Customer" asp-action="List">Customers</a></li>
+            }
+            @if (User.IsInRole("AdminRole"))
+            {
+                <li><a asp-area="" asp-controller="User" asp-action="List">Users</a></li>
+            }
+            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+        </ul>
+        <partial name="_LoginPartial" />
+    </div>
+</div>
+</nav>
+
+<address>
+    Abel de Armas Prado<br />
+    Gmail: abeldearmasprado@gmail.com<br />
+    <abbr title="Phone">P:</abbr>
+    642372142
+</address>
+
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>

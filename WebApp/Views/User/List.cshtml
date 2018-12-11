@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApp.Controllers.InputModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Customer" asp-action="List" class="navbar-brand">Home</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @if (User.IsInRole("AdminRole") || User.IsInRole("UserRole"))
+                {
+                    <li><a asp-area="" asp-controller="Customer" asp-action="List">Customers</a></li>
+                }
+                @if (User.IsInRole("AdminRole"))
+                {
+                    <li><a asp-area="" asp-controller="User" asp-action="List">Users</a></li>
+                }
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>
+
+<h2>Users</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>           
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
